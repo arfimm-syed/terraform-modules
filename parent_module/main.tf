@@ -1,16 +1,26 @@
 module "rg" {
-  source   = "../child_module/resource_group"
-  rg = var.rg
+  source = "../child_module/resource_group"
+  rg     = var.rg
   #   name     = each.value.name
   #   location = each.value.location
 }
 
 module "vnet" {
-  source   = "../child_module/vnet"
-  vnet = var.vnet
+  source     = "../child_module/vnet"
+  vnet       = var.vnet
   depends_on = [module.rg]
   #   name                = each.value.name
   #   location            = each.value.location
   #   resource_group_name = each.value.resource_group_name
   #   address_space       = each.value.address_space
+}
+
+module "subnet" {
+  source     = "../child_module/subnet"
+  subnet     = var.subnet
+  depends_on = [module.vnet, module.rg]
+
+  #   name                 = each.value.name
+  #   resource_group_name  = each.value.resource_group_name
+  #   virtual_network_name = each.value.virtual_network_name
 }
