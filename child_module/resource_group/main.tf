@@ -5,7 +5,7 @@ for_each = var.rg
 }
 
 variable "rg" {
-  description = "Map of resource groups"
+  description = "Map of vnet names and locations."
   type = map(object({
     name     = string
     location = string
