@@ -29,6 +29,7 @@ nics = {
   nic1 = {
     name                 = "my-nic"
     resource_group_name  = "my-arfimm"
+    location            = "Australia East"
     virtual_network_name = "my-vnet"
-    subnet_id = "/subscriptions/bb58363f-64e2-4c89-9fe0-18a66a90b86b/resourceGroups/my-arfimm/providers/Microsoft.Network/virtualNetworks/my-vnet/subnets/my-subnet"
+    subnet_id            = "/subscriptions/bb58363f-64e2-4c89-9fe0-18a66a90b86b/resourceGroups/my-arfimm/providers/Microsoft.Network/virtualNetworks/my-vnet/subnets/my-subnet"
 } }
