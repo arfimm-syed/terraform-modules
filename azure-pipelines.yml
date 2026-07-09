@@ -1,6 +1,9 @@
 trigger:
   - main
 
+variables:
+  azureServiceConnection: "tf-module"
+
 stages:
   - stage: Deploy
     displayName: "Terraform Deploy (Auto Apply)"
@@ -23,7 +26,7 @@ stages:
             inputs:
               provider: "azurerm"
               command: "init"
-              backendServiceArm: "Azure subscription 1(bb58363f-64e2-4c89-9fe0-18a66a90b86b)"
+              backendServiceArm: "$(azureServiceConnection)"
               backendAzureRmResourceGroupName: "rg-backend"
               backendAzureRmStorageAccountName: "arfimmltdstorage"
               backendAzureRmContainerName: "prod-tfstate"
@@ -42,13 +45,13 @@ stages:
             inputs:
               provider: "azurerm"
               command: "plan"
-              environmentServiceNameAzureRM: "Azure subscription 1(bb58363f-64e2-4c89-9fe0-18a66a90b86b)"
+              environmentServiceNameAzureRM: "$(azureServiceConnection)"
 
-          # APPLY IMMEDIATELY (this is your "commit = deploy")
+          # Apply
           - task: TerraformTask@5
             displayName: Apply
             inputs:
               provider: "azurerm"
               command: "apply"
               args: "-auto-approve"
-              environmentServiceNameAzureRM: "Azure subscription 1(bb58363f-64e2-4c89-9fe0-18a66a90b86b)"
+              environmentServiceNameAzureRM: "$(azureServiceConnection)"
