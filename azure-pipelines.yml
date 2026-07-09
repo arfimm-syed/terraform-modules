@@ -3,16 +3,19 @@ trigger:
 
 variables:
   azureServiceConnection: "tf-module"
+  terraformWorkingDirectory: "$(System.DefaultWorkingDirectory)/parent_module"
 
 stages:
   - stage: Deploy
     displayName: "Terraform Deploy (Auto Apply)"
+
     jobs:
       - job: Terraform
         pool:
           vmImage: "ubuntu-latest"
 
         steps:
+
           - checkout: self
 
           # Install Terraform
@@ -20,17 +23,33 @@ stages:
             inputs:
               terraformVersion: "1.15.7"
 
+
+          # Debug - verify Terraform files
+          - script: |
+              echo "Current directory:"
+              pwd
+
+              echo "Terraform directory:"
+              ls -la $(terraformWorkingDirectory)
+
+              echo "Terraform files:"
+              find $(terraformWorkingDirectory) -name "*.tf"
+            displayName: "Verify Terraform Files"
+
+
           # Init
           - task: TerraformTask@5
             displayName: Init
             inputs:
               provider: "azurerm"
               command: "init"
+              workingDirectory: "$(terraformWorkingDirectory)"
               backendServiceArm: "$(azureServiceConnection)"
               backendAzureRmResourceGroupName: "rg-backend"
               backendAzureRmStorageAccountName: "arfimmltdstorage"
               backendAzureRmContainerName: "prod-tfstate"
               backendAzureRmKey: "tfmodule.tfstate"
+
 
           # Validate
           - task: TerraformTask@5
@@ -38,6 +57,8 @@ stages:
             inputs:
               provider: "azurerm"
               command: "validate"
+              workingDirectory: "$(terraformWorkingDirectory)"
+
 
           # Plan
           - task: TerraformTask@5
@@ -45,7 +66,9 @@ stages:
             inputs:
               provider: "azurerm"
               command: "plan"
+              workingDirectory: "$(terraformWorkingDirectory)"
               environmentServiceNameAzureRM: "$(azureServiceConnection)"
+
 
           # Apply
           - task: TerraformTask@5
@@ -53,5 +76,6 @@ stages:
             inputs:
               provider: "azurerm"
               command: "apply"
+              workingDirectory: "$(terraformWorkingDirectory)"
               args: "-auto-approve"
               environmentServiceNameAzureRM: "$(azureServiceConnection)"
