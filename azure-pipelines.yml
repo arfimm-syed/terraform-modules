@@ -1,0 +1,54 @@
+trigger:
+  - main
+
+stages:
+  - stage: Deploy
+    displayName: "Terraform Deploy (Auto Apply)"
+    jobs:
+      - job: Terraform
+        pool:
+          vmImage: "ubuntu-latest"
+
+        steps:
+          - checkout: self
+
+          # Install Terraform
+          - task: ms-devlabs.custom-terraform-tasks.custom-terraform-installer-task.TerraformInstaller@1
+            inputs:
+              terraformVersion: "1.15.7"
+
+          # Init
+          - task: TerraformTask@5
+            displayName: Init
+            inputs:
+              provider: "azurerm"
+              command: "init"
+              backendServiceArm: "Azure subscription 1(bb58363f-64e2-4c89-9fe0-18a66a90b86b)"
+              backendAzureRmResourceGroupName: "rg-backend"
+              backendAzureRmStorageAccountName: "arfimmltdstorage"
+              backendAzureRmContainerName: "prod-tfstate"
+              backendAzureRmKey: "tfmodule.tfstate"
+
+          # Validate
+          - task: TerraformTask@5
+            displayName: Validate
+            inputs:
+              provider: "azurerm"
+              command: "validate"
+
+          # Plan
+          - task: TerraformTask@5
+            displayName: Plan
+            inputs:
+              provider: "azurerm"
+              command: "plan"
+              environmentServiceNameAzureRM: "Azure subscription 1(bb58363f-64e2-4c89-9fe0-18a66a90b86b)"
+
+          # APPLY IMMEDIATELY (this is your "commit = deploy")
+          - task: TerraformTask@5
+            displayName: Apply
+            inputs:
+              provider: "azurerm"
+              command: "apply"
+              args: "-auto-approve"
+              environmentServiceNameAzureRM: "Azure subscription 1(bb58363f-64e2-4c89-9fe0-18a66a90b86b)"
