@@ -1,4 +1,4 @@
-resource "network_security_group" "nsg" {
+resource "azurerm_network_security_group" "nsg" {
   for_each = var.nsg
 
   name                = each.value.name
