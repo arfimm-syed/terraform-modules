@@ -7,6 +7,7 @@ resource "azurerm_linux_virtual_machine" "example" {
   size                = each.value.size
   admin_username      = each.value.admin_username
   admin_password      = "P@ssword1234!"
+  disable_password_authentication = false
   network_interface_ids = each.value.network_interface_ids
 
 #   admin_ssh_key {
