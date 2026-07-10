@@ -51,6 +51,6 @@ vm = {
     location            = "Australia East"
     size                = "Standard_D2s_v3"
     admin_username      = "adminuser"
-    network_interface_ids = [azurerm_network_interface.nic1.id]
+    network_interface_ids = "/subscriptions/bb58363f-64e2-4c89-9fe0-18a66a90b86b/resourceGroups/my-arfimm/providers/Microsoft.Network/virtualNetworks/my-vnet/subnets/my-subnet/nics/my-nic"
   }
 }
