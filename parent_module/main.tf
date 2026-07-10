@@ -30,3 +30,10 @@ module "nic" {
   nics       = var.nics
   depends_on = [module.subnet, module.vnet, module.rg]
 }
+
+module "nsg" {
+  source     = "../child_module/nsg"
+  nsg        = var.nsg
+  depends_on = [module.rg]
+}
+

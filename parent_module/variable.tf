@@ -41,3 +41,12 @@ variable "nics" {
     subnet_id           = string
   }))
 }
+
+variable "nsg" {
+  description = "A map of nsg names and locations."
+  type = map(object({
+    name                = string
+    location            = string
+    resource_group_name = string
+  }))
+}
