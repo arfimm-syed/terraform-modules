@@ -50,3 +50,15 @@ variable "nsg" {
     resource_group_name = string
   }))
 }
+
+variable "vm" {
+  description = "A map of virtual machine names and locations."
+  type = map(object({
+    name                = string
+    resource_group_name = string
+    location            = string
+    size                = string
+    admin_username      = string
+    network_interface_ids = list(string)
+  }))
+}

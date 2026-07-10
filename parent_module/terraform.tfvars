@@ -42,3 +42,15 @@ nsg = {
     resource_group_name = "my-arfimm"
   }
 }
+
+
+vm = {
+  vm1 = {
+    name                = "my-vm"
+    resource_group_name = "my-arfimm"
+    location            = "Australia East"
+    size                = "Standard_D2s_v3"
+    admin_username      = "adminuser"
+    network_interface_ids = [azurerm_network_interface.nic1.id]
+  }
+}
