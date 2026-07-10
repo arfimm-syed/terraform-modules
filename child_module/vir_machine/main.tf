@@ -8,10 +8,10 @@ resource "azurerm_linux_virtual_machine" "example" {
   admin_username      = each.value.admin_username
   network_interface_ids = each.value.network_interface_ids
 
-  admin_ssh_key {
-    username   = each.value.admin_username
-    public_key = file("~/.ssh/id_rsa.pub")
-  }
+#   admin_ssh_key {
+#     username   = each.value.admin_username
+#     # public_key = file("~/.ssh/id_rsa.pub")
+#   }
 
   os_disk {
     caching              = "ReadWrite"
