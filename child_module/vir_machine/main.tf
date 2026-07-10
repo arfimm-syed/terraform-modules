@@ -6,6 +6,7 @@ resource "azurerm_linux_virtual_machine" "example" {
   location            = each.value.location
   size                = each.value.size
   admin_username      = each.value.admin_username
+  admin_password      = "P@ssword1234!"
   network_interface_ids = each.value.network_interface_ids
 
 #   admin_ssh_key {
