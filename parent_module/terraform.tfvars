@@ -56,3 +56,15 @@ vm = {
     ]
   }
 }
+
+
+nat_gw = {
+  nat_gw1 = {
+    name                    = "my-nat-gw"
+    location                = "Australia East"
+    resource_group_name     = "my-arfimm"
+    sku_name                = "Standard"
+    idle_timeout_in_minutes = 10
+    zones                   = ["1"]
+  }
+}

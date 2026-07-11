@@ -62,3 +62,15 @@ variable "vm" {
     network_interface_ids = list(string)
   }))
 }
+
+variable "nat_gw" {
+  description = "A map of NAT gateway names and locations."
+  type = map(object({
+    name                    = string
+    location                = string
+    resource_group_name     = string
+    sku_name                = string
+    idle_timeout_in_minutes = number
+    zones                   = list(string)
+  }))
+}
