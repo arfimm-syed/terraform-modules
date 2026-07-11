@@ -74,3 +74,13 @@ variable "nat_gw" {
     zones                   = list(string)
   }))
 }
+
+variable "public_ip" {
+  description = "A map of public IP names and locations."
+  type = map(object({
+    name                = string
+    resource_group_name = string
+    location            = string
+    allocation_method   = string
+  }))
+}

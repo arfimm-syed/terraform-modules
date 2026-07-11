@@ -68,3 +68,12 @@ nat_gw = {
     zones                   = ["1"]
   }
 }
+
+public_ip = {
+  ip1 = {
+    name                = "my-public-ip"
+    resource_group_name = "my-arfimm"
+    location            = "Australia East"
+    allocation_method   = "Static"
+  }
+}
