@@ -42,3 +42,9 @@ module "vm" {
   vm         = var.vm
   depends_on = [module.nic, module.nsg, module.rg]
 }
+
+module "nat" {
+  source     = "../child_module/nat_gateway"
+  nat_gw     = var.nat_gw
+  depends_on = [module.rg]
+}
