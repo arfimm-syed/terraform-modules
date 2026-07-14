@@ -31,11 +31,11 @@ module "nic" {
   depends_on = [module.subnet, module.vnet, module.rg]
 }
 
-module "nsg" {
-  source     = "../child_module/nsg"
-  nsg        = var.nsg
-  depends_on = [module.rg]
-}
+# module "nsg" {
+#   source     = "../child_module/nsg"
+#   nsg        = var.nsg
+#   depends_on = [module.rg]
+# }
 
 module "vm" {
   source     = "../child_module/vir_machine"
