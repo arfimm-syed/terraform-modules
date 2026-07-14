@@ -49,8 +49,8 @@ module "nat" {
   depends_on = [module.rg]
 }
 
-module "public_ip" {
-  source     = "../child_module/ip"
-  public_ip  = var.public_ip
-  depends_on = [module.rg]
-}
+# module "public_ip" {
+#   source     = "../child_module/ip"
+#   public_ip  = var.public_ip
+#   depends_on = [module.rg]
+# }
