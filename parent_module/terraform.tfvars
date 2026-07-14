@@ -32,7 +32,29 @@ nics = {
     location             = "Australia East"
     virtual_network_name = "my-vnet"
     subnet_id            = "/subscriptions/bb58363f-64e2-4c89-9fe0-18a66a90b86b/resourceGroups/my-arfimm/providers/Microsoft.Network/virtualNetworks/my-vnet/subnets/my-subnet"
-} }
+} 
+nic2 = {
+    name                 = "my-nic2"
+    resource_group_name  = "my-arfimm"
+    location             = "Australia East"
+    virtual_network_name = "my-vnet"
+    subnet_id            = "/subscriptions/bb58363f-64e2-4c89-9fe0-18a66a90b86b/resourceGroups/my-arfimm/providers/Microsoft.Network/virtualNetworks/my-vnet/subnets/my-subnet"
+  }
+ nic3 = {
+    name                 = "my-nic3"
+    resource_group_name  = "my-arfimm"
+    location             = "Australia East"
+    virtual_network_name = "my-vnet"
+    subnet_id            = "/subscriptions/bb58363f-64e2-4c89-9fe0-18a66a90b86b/resourceGroups/my-arfimm/providers/Microsoft.Network/virtualNetworks/my-vnet/subnets/my-subnet"
+  }
+  nic4 = {
+    name                 = "my-nic4"
+    resource_group_name  = "my-arfimm"
+    location             = "Australia East"
+    virtual_network_name = "my-vnet"
+    subnet_id            = "/subscriptions/bb58363f-64e2-4c89-9fe0-18a66a90b86b/resourceGroups/my-arfimm/providers/Microsoft.Network/virtualNetworks/my-vnet/subnets/my-subnet"
+  }
+}
 
 
 nsg = {

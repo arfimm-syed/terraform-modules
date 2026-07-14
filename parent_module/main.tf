@@ -37,11 +37,30 @@ module "nsg" {
   depends_on = [module.rg]
 }
 
-# module "vm" {
-#   source     = "../child_module/vir_machine"
-#   vm         = var.vm
-#   depends_on = [module.nic, module.nsg, module.rg]
-# }
+module "vm" {
+  source     = "../child_module/vir_machine"
+  vm         = var.vm
+  depends_on = [module.nic, module.nsg, module.rg]
+}
+
+module "vm2" {
+  source     = "../child_module/vm_extension"
+  vm_ext     = var.vm2
+  depends_on = [module.rg, module.nic]
+
+}
+
+module "vm3" {
+  source     = "../child_module/vm_extension"
+  vm_ext     = var.vm3
+  depends_on = [module.rg, module.nic]
+}
+
+module "vm4" {
+  source     = "../child_module/vm_extension"
+  vm_ext     = var.vm4
+  depends_on = [module.rg, module.nic]
+}
 
 module "nat" {
   source     = "../child_module/nat"
