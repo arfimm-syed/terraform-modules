@@ -39,3 +39,7 @@ variable "vm" {
     network_interface_ids = list(string)
   }))
 }
+
+variable "vm2" {}
+variable "vm3" {}
+variable "vm4" {}

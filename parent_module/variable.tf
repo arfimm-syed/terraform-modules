@@ -84,3 +84,7 @@ variable "public_ip" {
     allocation_method   = string
   }))
 }
+
+variable "vm2" {}
+variable "vm3" {}
+variable "vm4" {}

@@ -44,8 +44,8 @@ module "vm" {
 }
 
 module "vm2" {
-  source     = "../child_module/vm_extension"
-  vm_ext     = var.vm2
+  source     = "../child_module/vir_machine"
+  vm         = var.vm2
   depends_on = [module.rg, module.nic]
 
 }
